@@ -30,7 +30,7 @@ public class TodoRepositoryTests {
     @Test
     public void testRead() {
 
-        Long tno = 99L;
+        Long tno = 100L;
 
         Optional<Todo> result = todoRepository.findById(tno);
 
@@ -48,7 +48,7 @@ public class TodoRepositoryTests {
     @Test
     public void testInsert() {
 
-        IntStream.range(1, 100).forEach(i -> {
+        IntStream.rangeClosed(1, 100).forEach(i -> {
 
             Todo todo = Todo.builder().title("Title"+i).build();
 

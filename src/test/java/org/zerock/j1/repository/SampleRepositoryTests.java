@@ -18,6 +18,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class SampleRepositoryTests {
     
+    // test를 위한 main repository 파일 주입
     @Autowired
     private SampleRepository sampleRepository;
 
@@ -26,6 +27,7 @@ public class SampleRepositoryTests {
         log.info(sampleRepository.getClass().getName());
     }
 
+    // step1
     @Test
     public void testInsert() {
 

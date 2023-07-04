@@ -13,28 +13,30 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name = "tbl_todo2")
+@Table(name = "t_board")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Getter
-public class Todo {
+@ToString
+public class Board extends BaseEntity{ 
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // 항상 Long 타입을 쓴다
-    private Long tno;
+    private Long bno;
 
-    @Column(length = 300, nullable = false)
+    @Column(length = 200, nullable = false)
     private String title;
 
-    public void changeTitle(String title) {
+    @Column(length = 1000, nullable = false)
+    private String content;
+
+    @Column(length = 50, nullable = false)
+    private String writer;
+
+    public void changeTitle(String title){
         this.title = title;
     }
-
-    
-
 
 
 }

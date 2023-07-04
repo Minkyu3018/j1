@@ -13,4 +13,13 @@ public interface TodoService {
 
     //step2.
     TodoDTO register(TodoDTO dto);
+
+    //step3. read
+    TodoDTO getOne(Long tno);
+
+    // delete
+    void remove(Long tno);
+
+    // modify
+    void modify(TodoDTO todoDTO);
 }
