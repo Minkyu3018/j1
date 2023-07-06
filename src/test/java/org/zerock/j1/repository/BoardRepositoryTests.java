@@ -161,5 +161,25 @@ public class BoardRepositoryTests {
         result.get().forEach(b -> log.info(b));
     }
 
+    @Test
+    public void testListWithRcnt(){
+
+        List<Object[]> result = boardRepository.getListWithRcnt();
+        
+        for (Object[] result2 : result) {
+            log.info(Arrays.toString(result2));
+            
+        }
+    }
+
+    @Test
+    public void testListWithRcntSearch(){
+
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
+
+        boardRepository.searchWithRcnt("tcw","1",pageable);
+
+    }
+
     
 }

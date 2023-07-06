@@ -41,6 +41,10 @@ public interface BoardRepository extends JpaRepository<Board, Long>, BoardSearch
     // 이거를 쓰는 것 보다는 Mabatis와 결합해서 사용하는 것이 차라리 낫다.
     @Query(value = "select * from t_board", nativeQuery = true)
     List<Object[]> listNative();
-    
+
+
+    @Query("select b.bno, b.title, b.writer, count(r) from Board b left outer join Reply r on r.board = b group by b order by b.bno desc")
+    List<Object[]> getListWithRcnt();
+
     
 }
