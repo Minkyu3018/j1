@@ -7,12 +7,18 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.zerock.j1.domain.Board;
+import org.zerock.j1.dto.BoardReadDTO;
 import org.zerock.j1.repository.search.BoardSearch;
 
 import java.util.List;
 
 
 public interface BoardRepository extends JpaRepository<Board, Long>, BoardSearch{
+
+    @Query("select b from Board b where b.bno = :bno")  // <<< 결과물을
+    BoardReadDTO readOne(@Param("bno") Long bno);  // <<< 타임으로 바꿔줌
+
+
 
     // step1
     List<Board> findByTitleContaining(String title);
@@ -45,6 +51,8 @@ public interface BoardRepository extends JpaRepository<Board, Long>, BoardSearch
 
     @Query("select b.bno, b.title, b.writer, count(r) from Board b left outer join Reply r on r.board = b group by b order by b.bno desc")
     List<Object[]> getListWithRcnt();
+
+
 
     
 }

@@ -11,13 +11,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class BoardListRcntDTO {
+public class ReplyPageRequestDTO extends PageRequestDTO{
 
     private Long bno;
-    private String title;
-    private String writer;
-    private long replyCount;
+    @Builder.Default
+    private int page = 1;
+    @Builder.Default
+    private int size = 50;
     
+    private boolean last;
 
     
 }

@@ -12,6 +12,9 @@ import org.zerock.j1.domain.Reply;
 import org.zerock.j1.dto.BoardListRcntDTO;
 import org.zerock.j1.dto.PageRequestDTO;
 import org.zerock.j1.dto.PageResponseDTO;
+import org.zerock.j1.dto.ReplyDTO;
+import org.zerock.j1.dto.ReplyPageRequestDTO;
+import org.zerock.j1.service.ReplyService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -24,6 +27,9 @@ public class ReplyRepositoryTests {
 
     @Autowired
     private BoardRepository boardRepository;
+
+    @Autowired
+    private ReplyService replyService;
 
 
     @Test
@@ -51,7 +57,7 @@ public class ReplyRepositoryTests {
 
             Board board = Board.builder().bno(bno).build();
 
-            for(int i = 0; i < 5; i++){
+            for(int i = 0; i < 50; i++){
                 
                 Reply reply = Reply.builder()
                             .replyText("Reply..."+bno+"--"+i)
@@ -88,6 +94,30 @@ public class ReplyRepositoryTests {
              boardRepository.searchDTORcnt(pageRequest);
 
         log.info(responseDTO);
+    }
+
+    @Test
+    public void testCount() {
+
+        Long bno = 98L;
+
+        long count = replyRepository.getCountBoard(bno);
+
+        log.info("count:" + count);
+    }
+
+    @Test
+    public void testListLast() {
+
+        ReplyPageRequestDTO requestDTO = ReplyPageRequestDTO
+        .builder()
+        .bno(98L)
+        .last(true)
+        .build();
+
+        PageResponseDTO<ReplyDTO> a = replyService.list(requestDTO);
+
+        log.info(a);
     }
 
 

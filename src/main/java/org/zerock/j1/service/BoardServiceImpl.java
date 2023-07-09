@@ -1,7 +1,11 @@
 package org.zerock.j1.service;
 
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.zerock.j1.domain.Board;
+import org.zerock.j1.dto.BoardDTO;
 import org.zerock.j1.dto.BoardListRcntDTO;
 import org.zerock.j1.dto.PageRequestDTO;
 import org.zerock.j1.dto.PageResponseDTO;
@@ -28,5 +32,18 @@ public class BoardServiceImpl implements BoardService {
 
         
     }
+
+    @Override
+    public BoardDTO getOne(Long bno) {
+
+        Optional<Board> result = boardRepository.findById(bno);
+
+        Board board = result.orElseThrow();
+
+        BoardDTO dto = modelMapper.map(board, BoardDTO.class);
+
+        return dto;
     
+    }
+
 }

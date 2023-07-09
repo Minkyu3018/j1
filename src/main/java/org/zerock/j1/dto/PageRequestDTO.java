@@ -12,6 +12,7 @@ public class PageRequestDTO {
     private int size = 10;
     private String type, keyword;
 
+    
     public PageRequestDTO() {
         this(1,10);
     }
