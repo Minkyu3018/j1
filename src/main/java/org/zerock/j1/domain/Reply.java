@@ -34,5 +34,17 @@ public class Reply {
 
     @ManyToOne(fetch = FetchType.LAZY) // ERD의 연관관계, LAZY 필요한 순간까지는 쿼리를 날리지 말아라
     private Board board;
+
+    // 텍스트 수정가능
+    public void changeText(String text) {
+        this.replyText = text;
+
+    }
+
+    // 파일이름 수정가능
+    public void changeFile(String fileName) {
+        this.replyFile = fileName;
+    }
+
     
 }

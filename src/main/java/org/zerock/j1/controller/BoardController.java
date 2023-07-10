@@ -28,7 +28,7 @@ public class BoardController {
     @GetMapping(value = "/list")
     public PageResponseDTO<BoardListRcntDTO> list(@ParameterObject PageRequestDTO requestDTO){
 
-        log.info(requestDTO);
+        log.info("requestDTO" , requestDTO);
 
         return boardService.listRcnt(requestDTO);
     }
